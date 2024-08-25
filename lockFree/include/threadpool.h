@@ -4,7 +4,9 @@
 #include <vector>
 #include <atomic>   
 #include <cstddef>
-#include <stddef.h>
+#include <cstddef>
+#include <cstdint>
+
 
 
 class ThreadPool {

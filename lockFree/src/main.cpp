@@ -28,12 +28,7 @@ int main(int argc, char **argv)
         addtask(std::bind(task,i));
     }
     tp.stop();
-    std::cout<<"main thread exit"<<std::endl;
-    while (1)
-    {
-        std::this_thread::yield();
-    }
-    
+    std::cout<<"main thread exit"<<std::endl;    
     return 0;
 
 }

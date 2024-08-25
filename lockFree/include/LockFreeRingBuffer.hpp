@@ -3,7 +3,10 @@
 #include <atomic>
 #include <cstddef>
 #include <cstdlib>
-#include <stddef.h>
+#include <cstddef>
+#include <cstdint>
+
+
 template <typename T>
 class LockFreeRingBuffer {
     private:
@@ -16,6 +19,7 @@ class LockFreeRingBuffer {
         ~LockFreeRingBuffer();
         bool back(T data);
         bool front(T& data);
+    private:
         bool CAS(std::atomic<size_t>& target, size_t expected, size_t desired);
 };
 
@@ -74,4 +78,5 @@ template<typename T>
 bool LockFreeRingBuffer<T>::CAS(std::atomic<size_t>& target, size_t expected, size_t desired) {
     return target.compare_exchange_strong(expected, desired);
 }
+
 #endif

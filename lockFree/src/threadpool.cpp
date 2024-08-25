@@ -1,6 +1,7 @@
 #include "threadpool.h"
 #include <cstddef>
-#include <stddef.h>
+#include <cstddef>
+#include <cstdint>
 #include <iostream>
 
 ThreadPool::ThreadPool(size_t thread_num = 8) : m_task_queue(16), m_running(true)
@@ -14,6 +15,10 @@ ThreadPool::ThreadPool(size_t thread_num = 8) : m_task_queue(16), m_running(true
                 if (m_task_queue.front(task))
                 {
                     task();
+                }
+                else
+                {
+                    std::this_thread::yield();
                 }
             }
         }));
